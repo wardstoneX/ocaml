@@ -24,10 +24,9 @@ let map l f = let rec aux l f acc = match l with
 | x::xs -> aux xs f ((f x)::acc)
 in aux l f [];;
 
-let fold_left l f = let rec aux l f acc = match l with 
+let rec fold_left f acc = function
 | [] -> acc
-| x::xs -> aux xs f (f acc)
-in aux l f 0;;
+| x::xs -> fold_left f (f acc x) xs
 
 let filter l p = let rec aux l p acc = match l with
 | [] -> acc
